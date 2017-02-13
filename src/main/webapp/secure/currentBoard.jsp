@@ -127,7 +127,7 @@
                 <div class="alert-message alert-message-info">
                     <h4>
                         <strong>Created by:</strong>
-                        <c:out value="${user.username}"/>
+                        <c:out value="${aMsg.msgUser.username}"/>
                     </h4>
                     <p>
                         <c:out value="${aMsg.messageText}"/>

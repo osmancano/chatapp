@@ -1,9 +1,6 @@
 package com.ironyard.data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by osmanidris on 2/10/17.
@@ -14,7 +11,7 @@ public class ChatMessage {
     private Long ID;
 
     private String messageText;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private ChatUser msgUser;
 
     public String getMesssageText() {

@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @RequestMapping(path = "/secure/users/create", method = RequestMethod.POST)
-    public String createMovie(Model dataToJsp, @RequestParam String username,
+    public String createUser(Model dataToJsp, @RequestParam String username,
                               @RequestParam String password,
                               @RequestParam String displayName,
                               @RequestParam(required=false) List<String> permissions){
@@ -79,21 +79,10 @@ public class UserController {
         return destination;
     }
 
-    @RequestMapping(path = "/secure/user/delete", method = RequestMethod.GET)
-    public String deleteUser(HttpSession session,Model dataToJsp, @RequestParam Long id){
-        ChatUser loggedInUser = (ChatUser) session.getAttribute("user");
-        String msg = "Logged in user is not allowed to be deleted";
-        if(loggedInUser.getID()!= id) {
-            chatUserRepo.delete(id);
-            msg = "User is deleted successfully !";
-        }
-        dataToJsp.addAttribute("success_user_operation_msg",msg);
-        return "forward:/secure/users";
-    }
-
     @RequestMapping(path = "/secure/logout")
     public String login(HttpSession session){
         session.removeAttribute("user");
+        session.invalidate();
         String destinationView = "/open/login";
         return destinationView;
     }
